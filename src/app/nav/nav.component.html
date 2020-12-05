@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark px-5">
+  <a class="navbar-brand" [routerLink]="['/home']">Employee Management</a>
+
+  <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="['/employee']">Employees</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="[ '/department' ]">Departments</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" [routerLink]="[ '/course' ]">Courses</a>
+    </li>
+  </ul>
+
+  <div *ngIf="loggedIn()" class="btn-group" dropdown>
+    <a style="color: white" href="#" (click)="logout()">Logout</a>
+  </div>
+
+  <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+    <input class="form-control mr-sm-2" type="email" name="mail" placeholder="Mail" required
+           [(ngModel)]="model.mail">
+    <input class="form-control mr-sm-2" type="password" name="password" placeholder="Password" required
+           [(ngModel)]="model.password">
+    <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">
+      Login
+    </button>
+  </form>
+
+</nav>
