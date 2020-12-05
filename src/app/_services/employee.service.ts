@@ -28,8 +28,20 @@ export class EmployeeService {
     // return this.http.get<Employee[]>(this.url + 'employee/');
   }
 
-  getEmployee(id: string): Observable<Employee> {
+  getEmployee(id: number): Observable<Employee> {
     return this.http.get<Employee>(this.url + 'employee/' + id, httpOptions);
     // return this.http.get<Employee>(this.url + 'employee/' + id);
+  }
+
+  createEmployee(employee: Employee): any {
+
+  }
+
+  updateEmployee(employee: Employee): any {
+
+  }
+
+  deleteEmployee(employeeId: number): any {
+
   }
 }
