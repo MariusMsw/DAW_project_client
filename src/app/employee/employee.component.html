@@ -12,125 +12,53 @@
           <tr>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="LastName" matTooltip="Enter Last Name" matInput placeholder="Last Name">
+                <input formControlName="Name" matTooltip="Enter Name" matInput placeholder="Name">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!employeeForm.get('LastName').value && employeeForm.get('LastName').touched"></span>
+                <span *ngIf="!employeeForm.get('Name').value && employeeForm.get('Name').touched"></span>
               </mat-error>
             </td>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="FirstName" matTooltip="Enter First Name" matInput placeholder="First Name">
+                <input formControlName="Mail" matTooltip="Enter Mail" matInput placeholder="Mail">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!employeeForm.get('FirstName').value && employeeForm.get('FirstName').touched"></span>
+                <span *ngIf="!employeeForm.get('Mail').value && employeeForm.get('Mail').touched"></span>
               </mat-error>
             </td>
             <td class="tbl1">
               <mat-form-field class="demo-full-width">
-                <input formControlName="Title" matTooltip="Enter Title" matInput placeholder="Title">
+                <input formControlName="Salary" matTooltip="Enter Salary" matInput placeholder="Salary">
               </mat-form-field>
               <mat-error>
-                <span *ngIf="!employeeForm.get('Title').value && employeeForm.get('Title').touched"></span>
+                <span *ngIf="!employeeForm.get('Salary').value && employeeForm.get('Salary').touched"></span>
               </mat-error>
             </td>
           </tr>
           <tr>
             <td class="tbl1">
-              <!-- <mat-form-field class="demo-full-width">
-                <input formControlName="TitleOfCourtesy" matTooltip="Enter Title Of Courtesy" matInput placeholder="Title Of Courtesy">
-              </mat-form-field> -->
-              <mat-form-field>
-                <select matNativeControl formControlName="TitleOfCourtesy" matTooltip="Enter Title Of Courtesy" matInput
-                        placeholder="Title Of Courtesy">
-                  <option value="Ms.">Ms.</option>
-                  <option value="Dr.">Dr.</option>
-                  <option value="Mrs.">Mrs.</option>
-                  <option value="Mr.">Mr.</option>
-                </select>
+            </td>
+          </tr>
+          <tr>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input matTooltip="Enter LaptopId" formControlName="LaptopId" matInput placeholder="Laptop Id">
+              </mat-form-field>
+              <mat-error>
+                <span *ngIf="!employeeForm.get('LaptopId').value && employeeForm.get('LaptopId').touched"></span>
+              </mat-error>
+            </td>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input formControlName="DepartmentId" matTooltip="Enter DepartmentId" matInput
+                       placeholder="DepartmentId">
               </mat-form-field>
               <mat-error>
                 <span
-                  *ngIf="!employeeForm.get('TitleOfCourtesy').value && employeeForm.get('TitleOfCourtesy').touched"></span>
+                  *ngIf="!employeeForm.get('DepartmentId').value && employeeForm.get('DepartmentId').touched"></span>
               </mat-error>
             </td>
-            <td class="tbl1" colspan="2">
-              <mat-form-field class="demo-full-width">
-                <input matInput [matDatepicker]="picker" matTooltip="Enter Date Of Birth" formControlName="BirthDate"
-                       placeholder="Date Of Birth">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('BirthDate').value && employeeForm.get('BirthDate').touched"></span>
-              </mat-error>
-            </td>
-            <td class="tbl1">
-            </td>
-          </tr>
-          <tr>
-            <td class="tbl1">
-              <mat-form-field class="demo-full-width">
-                <input matTooltip="Enter Address" formControlName="Address" matInput placeholder="Address">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('Address').value && employeeForm.get('Address').touched"></span>
-              </mat-error>
-            </td>
-            <td class="tbl1">
-              <mat-form-field class="demo-full-width">
-                <input formControlName="City" matTooltip="Enter City" matInput placeholder="City">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('City').value && employeeForm.get('City').touched"></span>
-              </mat-error>
-            </td>
-            <td class="tbl1">
-              <mat-form-field class="demo-full-width">
-                <input formControlName="Region" matTooltip="Enter Region" matInput placeholder="Region">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('Region').value && employeeForm.get('Region').touched"></span>
-              </mat-error>
-            </td>
-          </tr>
-          <tr>
-            <td class="tbl1">
-              <mat-form-field class="demo-full-width">
-                <input formControlName="PostalCode" matTooltip="Enter Postal Code" matInput placeholder="Postal Code">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('PostalCode').value && employeeForm.get('PostalCode').touched"></span>
-              </mat-error>
-            </td>
-            <td class="tbl1">
-              <mat-form-field class="demo-full-width">
-                <input formControlName="Country" matTooltip="Enter Country" matInput placeholder="Country">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('Country').value && employeeForm.get('Country').touched"></span>
-              </mat-error>
-            </td>
-            <td class="tbl1">
-              <mat-form-field class="demo-full-width">
-                <input formControlName="HomePhone" matTooltip="Enter Home Phone" matInput placeholder="Home Phone">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('HomePhone').value && employeeForm.get('HomePhone').touched"></span>
-              </mat-error>
-            </td>
-          </tr>
-          <tr>
-            <td class="tbl1" colspan="3">
-              <mat-form-field class="demo-full-width">
-                <input formControlName="Notes" matTooltip="Enter Notes" matInput placeholder="Notes">
-              </mat-form-field>
-              <mat-error>
-                <span *ngIf="!employeeForm.get('Notes').value && employeeForm.get('Notes').touched"></span>
-              </mat-error>
-            </td>
-          </tr>
-          <tr>
+
             <td></td>
             <td class="content-center">
               <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
@@ -151,36 +79,29 @@
         <br><br>
         <table class="table">
           <tr ngclass="btn-primary">
-            <th class="tbl2">Last Name</th>
-            <th class="tbl2">First Name</th>
-            <th class="tbl2">Date Of Birth</th>
-            <th class="tbl2">Hire Date</th>
-            <th class="tbl2">City</th>
-            <!-- <th class="tbl2">Gender</th> -->
-            <th class="tbl2">Region</th>
-            <th class="tbl2">Postal Code</th>
-            <th class="tbl2">Country</th>
+            <th class="tbl2">Id</th>
+            <th class="tbl2">Name</th>
+            <th class="tbl2">Mail</th>
+            <th class="tbl2">Salary</th>
+            <th class="tbl2">Department ID</th>
+            <th class="tbl2">Laptop ID</th>
             <th class="tbl2">Edit</th>
             <th class="tbl2">Delete</th>
           </tr>
           <tr *ngFor="let employee of allEmployees | async">
-            <td class="tbl2">{{employee.LastName}}</td>
-            <td class="tbl2">{{employee.FirstName}}</td>
-            <td class="tbl2">{{employee.BirthDate | date }}</td>
-            <td class="tbl2">{{employee.HireDate | date }}</td>
-            <td class="tbl2">{{employee.City}}</td>
-            <!-- <td class="tbl2">{{employee.Gender ==0? 'Male' : 'Female'}}</td> -->
-            <td class="tbl2">{{employee.Region}}</td>
-            <td class="tbl2">{{employee.PostalCode}}</td>
-            <td class="tbl2">{{employee.Country}}</td>
-            <td class="tbl2">
-              <button type="button" class="btn btn-info" matTooltip="Click Edit Button"
-                      (click)="loadEmployee(employee.EmployeeID)">Edit
-              </button>
-            </td>
+            <td class="tbl2">{{employee.employeeId}}</td>
+            <td class="tbl2">{{employee.name}}</td>
+            <td class="tbl2">{{employee.mail}}</td>
+            <td class="tbl2">{{employee.salary}}</td>
+            <td class="tbl2">{{employee.departmentId}}</td>
+            <td class="tbl2">{{employee.laptopId}}</td>
+
+            <button type="button" class="btn btn-info" matTooltip="Click Edit Button"
+                    (click)="loadEmployee(employee.employeeId)">Edit
+            </button>
             <td class="tbl2">
               <button type="button" class="btn btn-danger" matTooltip="Click Delete Button"
-                      (click)="deleteEmployee(employee.EmployeeID)">Delete
+                      (click)="deleteEmployee(employee.employeeId)">Delete
               </button>
             </td>
           </tr>

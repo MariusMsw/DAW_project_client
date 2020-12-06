@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Employee} from '../_models/employee';
 import {EmployeeService} from '../_services/employee.service';
+import {tap} from 'rxjs/operators';
+import {EmployeeDto} from '../_models/employee_dto';
 
 @Component({
   selector: 'app-employee',
@@ -12,7 +14,7 @@ import {EmployeeService} from '../_services/employee.service';
 export class EmployeeComponent implements OnInit {
   dataSaved = false;
   employeeForm: any;
-  allEmployees: Observable<Employee[]>;
+  allEmployees: Observable<EmployeeDto[]> = new Observable<EmployeeDto[]>();
   employeeIdUpdate = null;
   massage = null;
 
@@ -22,30 +24,25 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     this.employeeForm = this.formbulider.group({
-      LastName: ['', [Validators.required]],
-      FirstName: ['', [Validators.required]],
-      Title: ['', ''],
-      TitleOfCourtesy: ['', ''],
-      BirthDate: ['', [Validators.required]],
-      HireDate: ['', ''],
-      Address: ['', [Validators.required]],
-      City: ['', [Validators.required]],
-      Region: ['', [Validators.required]],
-      PostalCode: ['', [Validators.required]],
-      Country: ['', [Validators.required]],
-      HomePhone: ['', [Validators.required]],
-      Notes: ['', [Validators.required]],
+      Name: ['', [Validators.required]],
+      Mail: ['', [Validators.required]],
+      Salary: ['', [Validators.required]],
+      DepartmentId: ['', [Validators.required]],
+      LaptopId: ['', [Validators.required]],
     });
     this.loadEmployees();
   }
 
   loadEmployees() {
-    this.allEmployees = this.employeeService.getEmployees();
+    this.allEmployees = this.employeeService.getEmployees().pipe(tap(_ => console.log(_)));
   }
 
   onFormSubmit() {
     this.dataSaved = false;
     const employee = this.employeeForm.value;
+    employee.Salary = Number(employee.Salary);
+    employee.DepartmentId = Number(employee.DepartmentId);
+    employee.LaptopId = Number(employee.LaptopId);
     this.CreateEmployee(employee);
     this.employeeForm.reset();
   }
@@ -54,20 +51,12 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getEmployee(employeeId).subscribe(employee => {
       this.massage = null;
       this.dataSaved = false;
-      this.employeeIdUpdate = employee.EmployeeID;
-      this.employeeForm.controls.LastName.setValue(employee.LastName);
-      this.employeeForm.controls.FirstName.setValue(employee.FirstName);
-      this.employeeForm.controls.Title.setValue(employee.Title);
-      this.employeeForm.controls.TitleOfCourtesy.setValue(employee.TitleOfCourtesy);
-      this.employeeForm.controls.BirthDate.setValue(employee.BirthDate);
-      this.employeeForm.controls.HireDate.setValue(employee.HireDate);
-      this.employeeForm.controls.Address.setValue(employee.Address);
-      this.employeeForm.controls.City.setValue(employee.City);
-      this.employeeForm.controls.Region.setValue(employee.Region);
-      this.employeeForm.controls.PostalCode.setValue(employee.PostalCode);
-      this.employeeForm.controls.Country.setValue(employee.Country);
-      this.employeeForm.controls.HomePhone.setValue(employee.HomePhone);
-      this.employeeForm.controls.Notes.setValue(employee.Notes);
+      this.employeeIdUpdate = employee.employeeId;
+      this.employeeForm.controls.Mail.setValue(employee.mail);
+      this.employeeForm.controls.Name.setValue(employee.name);
+      this.employeeForm.controls.Salary.setValue(employee.salary);
+      this.employeeForm.controls.DepartmentId.setValue(employee.departmentId);
+      this.employeeForm.controls.LaptopId.setValue(employee.laptopId);
     });
   }
 
@@ -83,8 +72,8 @@ export class EmployeeComponent implements OnInit {
         }
       );
     } else {
-      employee.EmployeeID = this.employeeIdUpdate;
-      this.employeeService.updateEmployee(employee).subscribe(() => {
+      employee.EmployeeId = this.employeeIdUpdate;
+      this.employeeService.updateEmployee(employee.EmployeeId, employee).subscribe(() => {
         this.dataSaved = true;
         this.massage = 'Record Updated Successfully';
         this.loadEmployees();
@@ -95,10 +84,10 @@ export class EmployeeComponent implements OnInit {
   }
 
   deleteEmployee(employeeId: number) {
-    if (confirm('Are you sure you want to delete this ?')) {
+    if (confirm('Are you sure you want to delete this?')) {
       this.employeeService.deleteEmployee(employeeId).subscribe(() => {
         this.dataSaved = true;
-        this.massage = 'Record Deleted Succefully';
+        this.massage = 'Record Deleted Successfully';
         this.loadEmployees();
         this.employeeIdUpdate = null;
         this.employeeForm.reset();
