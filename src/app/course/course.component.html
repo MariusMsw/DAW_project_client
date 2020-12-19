@@ -1,1 +1,68 @@
-<p>course works!</p>
+<div class="container">
+  <mat-card>
+    <mat-toolbar color="accent">
+      <div align="center" style="color:white;text-align: right;">
+        Manage your courses
+      </div>
+    </mat-toolbar>
+    <br><br>
+    <mat-card-content>
+      <form [formGroup]="courseForm" (ngSubmit)="onFormSubmit()">
+        <mat-grid-list cols="3" rowHeight="100px">
+          <mat-grid-tile>
+            <mat-form-field class="example-form-field">
+              <mat-label>Name</mat-label>
+              <input matInput formControlName="name" type="text">
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="fill">
+              <mat-label>Choose start date</mat-label>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <input formControlName="startDate" matInput [matDatepicker]="picker">
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+            <mat-form-field appearance="fill">
+              <mat-label>Choose end date</mat-label>
+              <input formControlName="endDate" matInput [matDatepicker]="picker2">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-grid-tile>
+
+        </mat-grid-list>
+        <button mat-button color="primary" type="submit" mat-raised-button md-colors="accent">Submit</button>
+        <button mat-button color="primary" type="reset" mat-raised-button md-colors="accent">Reset</button>
+
+        <br><br>
+        <table class="table">
+          <tr ngclass="btn-primary">
+            <th class="tbl2">Id</th>
+            <th class="tbl2">Name</th>
+            <th class="tbl2">StartDate</th>
+            <th class="tbl2">EndDate</th>
+          </tr>
+          <tr *ngFor="let course of allCourses | async">
+            <td class="tbl2">{{course.courseId}}</td>
+            <td class="tbl2">{{course.name}}</td>
+            <td class="tbl2">{{course.startDate}}</td>
+            <td class="tbl2">{{course.endDate}}</td>
+
+            <button type="button" class="btn btn-info" matTooltip="Click Edit Button"
+                    (click)="loadCourse(course.courseId)">Edit
+            </button>
+            <td class="tbl2">
+              <button type="button" class="btn btn-danger" matTooltip="Click Delete Button"
+                      (click)="deleteCourse(course.courseId)">Delete
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

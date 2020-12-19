@@ -38,6 +38,7 @@ import {EmployeeService} from './_services/employee.service';
 import {MatInputModule} from '@angular/material/input';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 // tslint:disable-next-line:typedef
 export function tokenGetter() {
@@ -80,6 +81,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    MatGridListModule,
   ],
   providers: [AuthService,
     ErrorInterceptorProvider, HttpClientModule, MatDatepickerModule, EmployeeService],
