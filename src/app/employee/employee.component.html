@@ -1,1 +1,112 @@
-<p>employee works!</p>
+<div class="container">
+  <mat-card>
+    <mat-toolbar color="accent">
+      <div align="center" style="color:white;text-align: right;">
+        Manage your employees
+      </div>
+    </mat-toolbar>
+    <br><br>
+    <mat-card-content>
+      <form [formGroup]="employeeForm" (ngSubmit)="onFormSubmit()">
+        <table>
+          <tr>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input formControlName="Name" matTooltip="Enter Name" matInput placeholder="Name">
+              </mat-form-field>
+              <mat-error>
+                <span *ngIf="!employeeForm.get('Name').value && employeeForm.get('Name').touched"></span>
+              </mat-error>
+            </td>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input formControlName="Mail" matTooltip="Enter Mail" matInput placeholder="Mail">
+              </mat-form-field>
+              <mat-error>
+                <span *ngIf="!employeeForm.get('Mail').value && employeeForm.get('Mail').touched"></span>
+              </mat-error>
+            </td>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input formControlName="Salary" matTooltip="Enter Salary" matInput placeholder="Salary">
+              </mat-form-field>
+              <mat-error>
+                <span *ngIf="!employeeForm.get('Salary').value && employeeForm.get('Salary').touched"></span>
+              </mat-error>
+            </td>
+          </tr>
+          <tr>
+            <td class="tbl1">
+            </td>
+          </tr>
+          <tr>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input matTooltip="Enter LaptopId" formControlName="LaptopId" matInput placeholder="Laptop Id">
+              </mat-form-field>
+              <mat-error>
+                <span *ngIf="!employeeForm.get('LaptopId').value && employeeForm.get('LaptopId').touched"></span>
+              </mat-error>
+            </td>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input formControlName="DepartmentId" matTooltip="Enter DepartmentId" matInput
+                       placeholder="DepartmentId">
+              </mat-form-field>
+              <mat-error>
+                <span
+                  *ngIf="!employeeForm.get('DepartmentId').value && employeeForm.get('DepartmentId').touched"></span>
+              </mat-error>
+            </td>
+
+            <td></td>
+            <td class="content-center">
+              <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
+                      [disabled]="!employeeForm.valid">Submit
+              </button>
+              <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
+                      (click)="resetForm()">Reset
+              </button>
+            </td>
+            <td>
+              <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success"
+                 align="left">
+                {{massage}}
+              </p>
+            </td>
+          </tr>
+        </table>
+        <br><br>
+        <table class="table">
+          <tr ngclass="btn-primary">
+            <th class="tbl2">Id</th>
+            <th class="tbl2">Name</th>
+            <th class="tbl2">Mail</th>
+            <th class="tbl2">Salary</th>
+            <th class="tbl2">Department ID</th>
+            <th class="tbl2">Laptop ID</th>
+            <th class="tbl2">Edit</th>
+            <th class="tbl2">Delete</th>
+          </tr>
+          <tr *ngFor="let employee of allEmployees | async">
+            <td class="tbl2">{{employee.employeeId}}</td>
+            <td class="tbl2">{{employee.name}}</td>
+            <td class="tbl2">{{employee.mail}}</td>
+            <td class="tbl2">{{employee.salary}}</td>
+            <td class="tbl2">{{employee.departmentId}}</td>
+            <td class="tbl2">{{employee.laptopId}}</td>
+
+            <button type="button" class="btn btn-info" matTooltip="Click Edit Button"
+                    (click)="loadEmployee(employee.employeeId)">Edit
+            </button>
+            <td class="tbl2">
+              <button type="button" class="btn btn-danger" matTooltip="Click Delete Button"
+                      (click)="deleteEmployee(employee.employeeId)">Delete
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

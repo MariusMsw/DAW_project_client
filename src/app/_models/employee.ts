@@ -1,11 +1,10 @@
 export class Employee {
 
-  id: number;
-  mail: string;
-  name: string;
-  salary: number;
-  departmentId: number;
-  laptopId: number;
-  employeeCourses = [];
-
+  EmployeeId: number;
+  Mail: string;
+  Name: string;
+  Salary: number;
+  DepartmentId: number;
+  LaptopId: number;
+  EmployeeCourses = [];
 }

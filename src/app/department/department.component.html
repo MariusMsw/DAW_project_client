@@ -1,0 +1,66 @@
+<div class="container">
+  <mat-card>
+    <mat-toolbar color="accent">
+      <div align="center" style="color:white;text-align: right;">
+        Manage your departments
+      </div>
+    </mat-toolbar>
+    <br><br>
+    <mat-card-content>
+      <form [formGroup]="departmentForm" (ngSubmit)="onFormSubmit()">
+        <table>
+          <tr>
+            <td class="tbl1">
+              <mat-form-field class="demo-full-width">
+                <input formControlName="Name" matTooltip="Enter Name" matInput placeholder="Name">
+              </mat-form-field>
+              <mat-error>
+                <span *ngIf="!departmentForm.get('Name').value && departmentForm.get('Name').touched"></span>
+              </mat-error>
+            </td>
+          <tr>
+            <td class="tbl1">
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="content-center">
+              <button type="submit" mat-raised-button color="accent" matTooltip="Click Submit Button"
+                      [disabled]="!departmentForm.valid">Submit
+              </button>
+              <button type="reset" mat-raised-button color="accent" matTooltip="Click Reset Button"
+                      (click)="resetForm()">Reset
+              </button>
+            </td>
+            <td>
+              <p *ngIf="dataSaved" style="color:rgb(0, 128, 0);font-size:20px;font-weight:bold" Class="success"
+                 align="left">
+                {{massage}}
+              </p>
+            </td>
+          </tr>
+        </table>
+        <br><br>
+        <table class="table">
+          <tr ngclass="btn-primary">
+            <th class="tbl2">Id</th>
+            <th class="tbl2">Name</th>
+          </tr>
+          <tr *ngFor="let department of allDepartments | async">
+            <td class="tbl2">{{department.departmentId}}</td>
+            <td class="tbl2">{{department.name}}</td>
+
+            <button type="button" class="btn btn-info" matTooltip="Click Edit Button"
+                    (click)="loadDepartment(department.departmentId)">Edit
+            </button>
+            <td class="tbl2">
+              <button type="button" class="btn btn-danger" matTooltip="Click Delete Button"
+                      (click)="deleteDepartment(department.departmentId)">Delete
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
