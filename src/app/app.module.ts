@@ -16,7 +16,6 @@ import {ErrorInterceptorProvider} from './_services/error.service';
 import {AuthService} from './_services/auth.service';
 
 import {appRoutes} from './routes';
-import {AgePipe} from './_pipes/age.pipe';
 import {DateConverterPipe} from './_pipes/date-converter.pipe';
 import {EmployeeComponent} from './employee/employee.component';
 import {DepartmentComponent} from './department/department.component';
@@ -53,7 +52,6 @@ export function tokenGetter() {
     HomeComponent,
     RegisterComponent,
     DateConverterPipe,
-    AgePipe,
     EmployeeComponent,
     DepartmentComponent,
     CourseComponent,

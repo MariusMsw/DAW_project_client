@@ -49,8 +49,8 @@
           <tr *ngFor="let course of allCourses | async">
             <td class="tbl2">{{course.courseId}}</td>
             <td class="tbl2">{{course.name}}</td>
-            <td class="tbl2">{{course.startDate}}</td>
-            <td class="tbl2">{{course.endDate}}</td>
+            <td class="tbl2">{{ course.startDate | date:"MM/dd/yy" }}</td>
+            <td class="tbl2">{{ course.endDate | date:"MM/dd/yy" }}</td>
 
             <button type="button" class="btn btn-info" matTooltip="Click Edit Button"
                     (click)="loadCourse(course.courseId)">Edit
